@@ -23,7 +23,7 @@ def getCommentIDs(files_to_scrape):
         
         for child in data['data']['children']:
             permalink = child['data'].get('permalink', '')
-            comment_id = permalink.split('/')[-3]  # -3 to find the the commendIDs in the permalink. Also, it ends with '/'
+            comment_id = permalink.split('/')[2] + "/" + permalink.split('/')[3] + "/" + permalink.split('/')[-3]
             comment_ids.append(comment_id)
         
         # Write comment IDs to a text file
@@ -57,8 +57,6 @@ def dataCollection():
     # test to make sure the token is taken, should print with exit code 0
     print(requests.get("https://oauth.reddit.com/api/v1/me", headers=headers).json())
 
-    # TODO: Adya, keep these scrapes commented unless you find something wrong with the JSON files. I just kept them
-    #  in here for presentation purposes
 
     # To run this program, uncomment the chunk of code from lines 63 to 161 using 'Ctrl/Cmd + /'
     # f = open("scrape.json", "w")
@@ -66,29 +64,9 @@ def dataCollection():
     # params={'limit': '100'}).json(), f)
     # f.close()
 
-    # TODO: Adya, when you are done with your getCommentsIDs function, you can uncomment all of these comment loops
-    #  and run once to fill files. Afterwards,  comment them again so that we don't exceed our data usage
-    # c = getCommentIDs("scrape.json")
-    # file_num = 1
-    # for comment in c:
-    #     f = open("commentConspiracy" + str(file_num) + ".json", "w")
-    #     json.dump(requests.get("https://oauth.reddit.com/r/conspiracy/comments/" + comment, headers=headers,
-    #     params={'limit': '100'}).json(), f)
-    #     file_num += 1
-    # f.close()
-
     # f = open("scrape1.json", "w")
     # json.dump(requests.get("https://oauth.reddit.com/r/politics/controversial", headers=headers,
     # params={'limit': '100'}).json(), f)
-    # f.close()
-
-    # c = getCommentIDs("scrape1.json")
-    # file_num = 1
-    # for comment in c:
-    #     f = open("commentPolitics" + str(file_num) + ".json", "w")
-    #     json.dump(requests.get("https://oauth.reddit.com/r/politics/comments/" + comment, headers=headers,
-    #     params={'limit': '100'}).json(), f)
-    #     file_num += 1
     # f.close()
 
     # f = open("scrape2.json", "w")
@@ -96,27 +74,9 @@ def dataCollection():
     # params={'limit': '100'}).json(), f)
     # f.close()
 
-    # c = getCommentIDs("scrape2.json")
-    # file_num = 1
-    # for comment in c:
-    #     f = open("commentTrueReddit" + str(file_num) + ".json", "w")
-    #     json.dump(requests.get("https://oauth.reddit.com/r/TrueReddit/comments/" + comment, headers=headers,
-    #     params={'limit': '100'}).json(), f)
-    #     file_num += 1
-    # f.close()
-
     # f = open("scrape3.json", "w")
     # json.dump(requests.get("https://oauth.reddit.com/r/PoliticalDiscussion/controversial", headers=headers,
     # params={'limit': '100'}).json(), f)
-    # f.close()
-
-    # c = getCommentIDs("scrape3.json")
-    # file_num = 1
-    # for comment in c:
-    #     f = open("commentPoliticalDiscussion" + str(file_num) + ".json", "w")
-    #     json.dump(requests.get("https://oauth.reddit.com/r/PoliticalDiscussion/comments/" + comment, headers=headers,
-    #     params={'limit': '100'}).json(), f)
-    #     file_num += 1
     # f.close()
 
     # f = open("scrape4.json", "w")
@@ -124,27 +84,9 @@ def dataCollection():
     # params={'limit': '100'}).json(), f)
     # f.close()
 
-    # c = getCommentIDs("scrape4.json")
-    # file_num = 1
-    # for comment in c:
-    #     f = open("commentChangeMyView" + str(file_num) + ".json", "w")
-    #     json.dump(requests.get("https://oauth.reddit.com/r/changemyview/comments/" + comment, headers=headers,
-    #     params={'limit': '100'}).json(), f)
-    #     file_num += 1
-    # f.close()
-
     # f = open("scrape5.json", "w")
     # json.dump(requests.get("https://oauth.reddit.com/r/Conservative/controversial", headers=headers,
     # params={'limit': '100'}).json(), f)
-    # f.close()
-
-    # c = getCommentIDs("scrape5.json")
-    # file_num = 1
-    # for comment in c:
-    #     f = open("commentConservative" + str(file_num) + ".json", "w")
-    #     json.dump(requests.get("https://oauth.reddit.com/r/Conservative/comments/" + comment, headers=headers,
-    #     params={'limit': '100'}).json(), f)
-    #     file_num += 1
     # f.close()
 
     # f = open("scrape6.json", "w")
@@ -152,14 +94,14 @@ def dataCollection():
     # params={'limit': '100'}).json(), f)
     # f.close()
 
-    # c = getCommentIDs("scrape6.json")
-    # file_num = 1
-    # for comment in c:
-    #     f = open("commentDemocrats" + str(file_num) + ".json", "w")
-    #     json.dump(requests.get("https://oauth.reddit.com/r/democrats/comments/" + comment, headers=headers,
-    #     params={'limit': '100'}).json(), f)
-    #     file_num += 1
-    # f.close()
+    # iterate over comment_id.txt file and look collect comment information into commentScrape.json
+    # r = open("comment_ids.txt", "r")
+    # w = open("commentScrape.json", "w")
+    # comments = r.readlines()
+    # for comment in comments:
+    #     json.dump(requests.get("https://oauth.reddit.com/r/" + comment.strip(), headers=headers, params={'limit': '5'}).json(), w)
+    # r.close()
+    # w.close()
 
 
 if __name__ == '__main__':
