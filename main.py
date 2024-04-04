@@ -7,7 +7,7 @@ load_dotenv()  # This line brings all environment variables from .env into os.en
 
 
 import json
-
+import requests
 
 # TODO: Adya this method should extract comment ID of posts from the scrape files
 # TODO: Comment ID is in the permalink attribute
@@ -15,25 +15,25 @@ import json
 # TODO: Return comment IDs as a String Array
 
 # Function to extract comment IDs from JSON files
-def getCommentIDs(files):
+def getCommentIDs(file_to_scrape):
     comment_ids = []
-    for f in files:
-        with open(f, 'r') as json_file:
+    for file in file_to_scrape:
+        with open(file, 'r') as json_file:
             data = json.load(json_file)
         
-        for item in data:
-            permalink = item.get('permalink', '')
-            comment_id = permalink.split('/')[-1]
+        for child in data['data']['children']:
+            permalink = child['data'].get('permalink', '')
+            comment_id = permalink.split('/')[-3]  # -3 to find the the commendIDs in the permalink. Also, it ends with '/'
             comment_ids.append(comment_id)
         
-    return comment_ids
+        # Write comment IDs to a text file
+        with open('comment_ids.txt', 'w') as output_file:
+            for comment_id in comment_ids:
+                output_file.write(comment_id + '\n')
 
 # List of files to extract comment IDs from
-files = ['scrape1.json', 'scrape2.json', 'scrape3.json', 'scrape4.json', 'scrape5.json', 'scrape6.json']
-
-# Call the function and print the result
-comment_ids = getCommentIDs(files)
-print(comment_ids)
+files_to_scrape = ["scrape.json", "scrape1.json", "scrape2.json", "scrape3.json", "scrape4.json", "scrape5.json", "scrape6.json"]
+getCommentIDs(files_to_scrape)
 
 
 def dataCollection():
@@ -58,6 +58,8 @@ def dataCollection():
 
     # TODO: Adya, keep these scrapes commented unless you find something wrong with the JSON files. I just kept them
     #  in here for presentation purposes
+
+    # To run this program, uncomment the chunk of code from lines 63 to 161 using 'Ctrl/Cmd + /'
     # f = open("scrape.json", "w")
     # json.dump(requests.get("https://oauth.reddit.com/r/conspiracy/controversial", headers=headers,
     # params={'limit': '100'}).json(), f)
