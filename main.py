@@ -15,9 +15,9 @@ import requests
 # TODO: Return comment IDs as a String Array
 
 # Function to extract comment IDs from JSON files
-def getCommentIDs(file_to_scrape):
+def getCommentIDs(files_to_scrape):
     comment_ids = []
-    for file in file_to_scrape:
+    for file in files_to_scrape:
         with open(file, 'r') as json_file:
             data = json.load(json_file)
         
