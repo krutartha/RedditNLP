@@ -30,6 +30,7 @@ def getCommentIDs(file_to_scrape):
         with open('comment_ids.txt', 'w') as output_file:
             for comment_id in comment_ids:
                 output_file.write(comment_id + '\n')
+    return comment_ids
 
 # List of files to extract comment IDs from
 files_to_scrape = ["scrape.json", "scrape1.json", "scrape2.json", "scrape3.json", "scrape4.json", "scrape5.json", "scrape6.json"]
