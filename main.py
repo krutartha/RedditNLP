@@ -130,7 +130,7 @@ def commentScrapeBySubreddit(subreddit_comment_id_file_array, headers):
 
 def dataCollection():
 ############################## --- API ACCESS --- ##############################
-
+# Author: Ashley
     # set up to obtain access key
     CLIENT_ID = os.environ['CLIENT_ID']
     SECRET_KEY = os.environ['SECRET_KEY']
@@ -151,6 +151,7 @@ def dataCollection():
     print(requests.get("https://oauth.reddit.com/api/v1/me", headers=headers).json())
 
 ##########################################################################################
+# Author: Ashley
     # To run this program, uncomment the chunk of code from lines 63 to 161 using 'Ctrl/Cmd + /'
     # These lines scrape the top 100 most controversial posts from each subreddit into a json file
     # f = open("scrape.json", "w")
