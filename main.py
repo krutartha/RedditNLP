@@ -152,6 +152,7 @@ def dataCollection():
 
 ##########################################################################################
     # To run this program, uncomment the chunk of code from lines 63 to 161 using 'Ctrl/Cmd + /'
+    # These lines scrape the top 100 most controversial posts from each subreddit into a json file
     # f = open("scrape.json", "w")
     # json.dump(requests.get("https://oauth.reddit.com/r/conspiracy/controversial", headers=headers,
     # params={'limit': '100'}).json(), f)
