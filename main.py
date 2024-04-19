@@ -1,19 +1,12 @@
-#### Importing the dotenv package to use environment variables
-## This will help with not exposing sensitive info and credentials on the repo
+# Importing the dotenv package to use environment variables
+# This will help with not exposing sensitive info and credentials on the repo
 from dotenv import load_dotenv
-import os ##helper package
+import os # helper package
 load_dotenv()  # This line brings all environment variables from .env into os.environ
-
-
 
 import json
 import requests
 from nltk.sentiment import SentimentIntensityAnalyzer
-
-
-
-
-
 
 ##########################################################################################
 # Author: Kru
@@ -42,9 +35,9 @@ def splitCommentFile(comment_scrape_file):
 
 ##########################################################################################
 
+#Author: Adya
 
-
-# TODO: Adya this method should extract comment ID of posts from the scrape files
+# TODO: This method extracts comment ID of posts from the scrape files
 # TODO: Comment ID is in the permalink attribute
 # TODO: for example, "/r/democrats/comments/1bsdtxg" for this permalink, "1bsdtxg"
 # TODO: Return comment IDs as a String Array
@@ -152,51 +145,51 @@ def dataCollection():
 
 ##########################################################################################
 # Author: Ashley
-    # To run this program, uncomment the chunk of code from lines 63 to 161 using 'Ctrl/Cmd + /'
+    # To run this program, uncomment the chunk of code using 'Ctrl/Cmd + /'
     # These lines scrape the top 100 most controversial posts from each subreddit into a json file
-    # f = open("scrape.json", "w")
-    # json.dump(requests.get("https://oauth.reddit.com/r/conspiracy/controversial", headers=headers,
-    # params={'limit': '100'}).json(), f)
-    # f.close()
+    f = open("scrape.json", "w")
+    json.dump(requests.get("https://oauth.reddit.com/r/conspiracy/controversial", headers=headers,
+    params={'limit': '100'}).json(), f)
+    f.close()
 
-    # f = open("scrape1.json", "w")
-    # json.dump(requests.get("https://oauth.reddit.com/r/politics/controversial", headers=headers,
-    # params={'limit': '100'}).json(), f)
-    # f.close()
+    f = open("scrape1.json", "w")
+    json.dump(requests.get("https://oauth.reddit.com/r/politics/controversial", headers=headers,
+    params={'limit': '100'}).json(), f)
+    f.close()
 
-    # f = open("scrape2.json", "w")
-    # json.dump(requests.get("https://oauth.reddit.com/r/TrueReddit/controversial", headers=headers,
-    # params={'limit': '100'}).json(), f)
-    # f.close()
+    f = open("scrape2.json", "w")
+    json.dump(requests.get("https://oauth.reddit.com/r/TrueReddit/controversial", headers=headers,
+    params={'limit': '100'}).json(), f)
+    f.close()
 
-    # f = open("scrape3.json", "w")
-    # json.dump(requests.get("https://oauth.reddit.com/r/PoliticalDiscussion/controversial", headers=headers,
-    # params={'limit': '100'}).json(), f)
-    # f.close()
+    f = open("scrape3.json", "w")
+    json.dump(requests.get("https://oauth.reddit.com/r/PoliticalDiscussion/controversial", headers=headers,
+    params={'limit': '100'}).json(), f)
+    f.close()
 
-    # f = open("scrape4.json", "w")
-    # json.dump(requests.get("https://oauth.reddit.com/r/changemyview/controversial", headers=headers,
-    # params={'limit': '100'}).json(), f)
-    # f.close()
+    f = open("scrape4.json", "w")
+    json.dump(requests.get("https://oauth.reddit.com/r/changemyview/controversial", headers=headers,
+    params={'limit': '100'}).json(), f)
+    f.close()
 
-    # f = open("scrape5.json", "w")
-    # json.dump(requests.get("https://oauth.reddit.com/r/Conservative/controversial", headers=headers,
-    # params={'limit': '100'}).json(), f)
-    # f.close()
+    f = open("scrape5.json", "w")
+    json.dump(requests.get("https://oauth.reddit.com/r/Conservative/controversial", headers=headers,
+    params={'limit': '100'}).json(), f)
+    f.close()
 
-    # f = open("scrape6.json", "w")
-    # json.dump(requests.get("https://oauth.reddit.com/r/democrats/controversial", headers=headers,
-    # params={'limit': '100'}).json(), f)
-    # f.close()
+    f = open("scrape6.json", "w")
+    json.dump(requests.get("https://oauth.reddit.com/r/democrats/controversial", headers=headers,
+    params={'limit': '100'}).json(), f)
+    f.close()
 
     #iterate over comment_id.txt file and look collect comment information into commentScrape.json
-    # r = open("comment_ids.txt", "r")
-    # w = open("commentScrape.json", "w")
-    # comments = r.readlines()
-    # for comment in comments:
-    #     json.dump(requests.get("https://oauth.reddit.com/r/" + comment.strip(), headers=headers, params={'limit': '5'}).json(), w)
-    # r.close()
-    # w.close()
+    r = open("comment_ids.txt", "r")
+    w = open("commentScrape.json", "w")
+    comments = r.readlines()
+    for comment in comments:
+        json.dump(requests.get("https://oauth.reddit.com/r/" + comment.strip(), headers=headers, params={'limit': '5'}).json(), w)
+    r.close()
+    w.close()
     
     #commentScrapeBySubreddit is called here so it can get the headers from auth token of API
     comment_id_files_array = ["comment_ids/changemyview_comment_ids.txt", "comment_ids/Conservative_comment_ids.txt", "comment_ids/conspiracy_comment_ids.txt", "comment_ids/democrats_comment_ids.txt", "comment_ids/PoliticalDiscussion_comment_ids.txt", "comment_ids/politics_comment_ids.txt", "comment_ids/TrueReddit_comment_ids.txt"]
@@ -207,9 +200,9 @@ def dataCollection():
 if __name__ == '__main__':
     dataCollection()
     # List of files to extract comment IDs from
-    # files_to_scrape = ["scrape.json", "scrape1.json", "scrape2.json", "scrape3.json", "scrape4.json", "scrape5.json", "scrape6.json"]
-    # getCommentIDs(files_to_scrape)
-    # commentIdBySubreddit("comment_ids.txt")
+    files_to_scrape = ["scrape.json", "scrape1.json", "scrape2.json", "scrape3.json", "scrape4.json", "scrape5.json", "scrape6.json"]
+    getCommentIDs(files_to_scrape)
+    commentIdBySubreddit("comment_ids.txt")
     
-    # commentScrapeBySubreddit(comment_id_files_array)
-    # splitCommentFile("test.json")
+    commentScrapeBySubreddit(comment_id_files_array)
+    splitCommentFile("test.json")
