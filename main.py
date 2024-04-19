@@ -35,31 +35,44 @@ def splitCommentFile(comment_scrape_file):
 
 ##########################################################################################
 
-#Author: Adya
+# Author: Adya
 
 # TODO: This method extracts comment ID of posts from the scrape files
 # TODO: Comment ID is in the permalink attribute
 # TODO: for example, "/r/democrats/comments/1bsdtxg" for this permalink, "1bsdtxg"
 # TODO: Return comment IDs as a String Array
 
-
-#Function to extract comment IDs from JSON files
+# Function to extract comment IDs from JSON files
 def getCommentIDs(files_to_scrape):
+    # Initialize an empty list to store comment IDs
     comment_ids = []
+
+    # Loop over each file in the list of files to scrape
     for file in files_to_scrape:
+        # Open the file in read mode
         with open(file, 'r') as json_file:
+            # Load the JSON data from the file
             data = json.load(json_file)
         
+        # Loop over each child in the 'children' list of the 'data' dictionary
         for child in data['data']['children']:
+            # Get the 'permalink' value from the 'data' dictionary of the child, return an empty string if 'permalink' is not present
             permalink = child['data'].get('permalink', '')
+            # Split the permalink on '/' and concatenate the 3rd, 4th and 3rd last elements to form the comment ID
             comment_id = permalink.split('/')[2] + "/" + permalink.split('/')[3] + "/" + permalink.split('/')[-3]
+            # Append the comment ID to the list of comment IDs
             comment_ids.append(comment_id)
         
-        # Write comment IDs to a text file
+        # Open a text file named 'comment_ids.txt' in write mode
         with open('comment_ids.txt', 'w') as output_file:
+            # Loop over each comment ID in the list of comment IDs
             for comment_id in comment_ids:
+                # Write the comment ID to the file followed by a newline character
                 output_file.write(comment_id + '\n')
+    
+    # Return the list of comment IDs
     return comment_ids
+
 
 ######################################################################
 # Author : Kru
