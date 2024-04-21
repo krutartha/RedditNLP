@@ -1,0 +1,151 @@
+NOTE: I believe 2 of these partitions are empty
+
+-------changemyview_negatives.json AVERAGES ------- 1
+
+Post Average: -0.655775
+
+Comment Average: -0.042868750000000004
+
+
+
+-------changemyview_neutrals.json AVERAGES ------- 2
+
+Post Average: 0.0
+
+Comment Average: 0.50981
+
+
+
+-------changemyview_positives.json AVERAGES ------- 3
+
+Post Average: 0.7983444444444444
+
+Comment Average: 0.40974
+
+
+
+-------Conservative_negatives.json AVERAGES ------- 4
+
+Post Average: -0.47438
+
+Comment Average: -0.04985088690476191
+
+
+
+-------Conservative_neutrals.json AVERAGES ------- 5
+
+Post Average: 0.0
+
+Comment Average: 0.01167142857142857
+
+
+
+-------Conservative_positives.json AVERAGES ------- 6
+
+Post Average: 0.4181714285714286
+
+Comment Average: -0.026620238095238096
+
+
+
+-------conspiracy_negatives.json AVERAGES ------- 7
+
+Post Average: -0.5765
+
+Comment Average: 0.09940944444444445
+
+
+
+-------conspiracy_neutrals.json AVERAGES ------- 8
+
+Post Average: 0.0
+
+Comment Average: 0.24204
+
+
+
+-------conspiracy_positives.json AVERAGES ------- 9
+
+Post Average: 0.5458714285714286
+
+Comment Average: 0.20400676020408165
+
+
+
+-------democrats_negatives.json AVERAGES ------- 10
+
+Post Average: -0.5264333333333333
+
+Comment Average: -0.16707472222222222
+
+
+
+-------democrats_neutrals.json AVERAGES ------- 11
+
+Post Average: 0.0
+
+Comment Average: -0.015631818181818184
+
+
+
+-------democrats_positives.json AVERAGES ------- 12
+
+Post Average: 0.40117142857142857
+
+Comment Average: -0.09797714285714285
+
+
+
+-------PoliticalDiscussion_negatives.json AVERAGES ------- 13
+
+Post Average: -0.8917
+
+Comment Average: 0.06709999999999999
+
+
+
+-------PoliticalDiscussion_positives.json AVERAGES ------- 14
+
+Post Average: 0.8343
+
+Comment Average: 0.174575
+
+
+
+-------politics_negatives.json AVERAGES ------- 15
+
+Post Average: -0.4626892857142857
+
+Comment Average: -0.2652208410636982
+
+
+
+-------politics_neutrals.json AVERAGES ------- 16
+
+Post Average: 0.0
+
+Comment Average: -0.21117407407407407
+
+
+
+-------politics_positives.json AVERAGES ------- 17
+
+Post Average: 0.42933529411764704
+
+Comment Average: -0.16618950280112046
+
+
+
+-------TrueReddit_negatives.json AVERAGES ------- 18
+
+Post Average: -0.6395666666666666
+
+Comment Average: 0.03485555555555555
+
+
+
+-------TrueReddit_positives.json AVERAGES ------- 19
+
+Post Average: 0.27155
+
+Comment Average: -0.0792
