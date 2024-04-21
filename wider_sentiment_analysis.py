@@ -11,7 +11,7 @@ def sentiment(comment_scrape_file_array):
     for file in comment_scrape_file_array:
         current_sub = file.split("_")[1][8:]
         r = open(file, "r")
-        w = open("sentiment_analyses/"+current_sub+"_analysis.json", "w")
+        w = open("ENHANCED_sentiment_analyses/"+current_sub+"_analysis.json", "w")
         posts = json.load(r)
         scores = []
         for post in posts:
@@ -23,7 +23,7 @@ def sentiment(comment_scrape_file_array):
 
             for comments in post['comments']:
                 sentiment_scores = sia.polarity_scores(comments)
-                entry = dict(title=(title_sentiment, title), description=(description_sentiment, description), comment_sentiment=sentiment_scores)
+                entry = dict(title=(title_sentiment, title), description=(description_sentiment, description), comment_sentiment=(sentiment_scores, comments))
                 scores.append(entry)
         json.dump(scores, w)
     
