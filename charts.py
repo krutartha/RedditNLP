@@ -78,11 +78,11 @@ def makePieChart(file_array):
         labels = ["Positive", "Negative", "Neutral"]
         colors = ["Green", "Red", "#e6e600"]
         plt.pie(y, labels=labels, colors=colors, autopct="%.2f%%")
-        plt.legend(title=sub_name)
+        plt.legend(title="r/"+sub_name)
         plt.savefig('pie_charts/'+sub_name+".png", dpi=300)
         
 if __name__ == '__main__':
     combined_files = ["COMBINED_analysis/changemyview_analysis.json", "COMBINED_analysis/Conservative_analysis.json", "COMBINED_analysis/conspiracy_analysis.json", "COMBINED_analysis/democrats_analysis.json", "COMBINED_analysis/PoliticalDiscussion_analysis.json",  "COMBINED_analysis/politics_analysis.json", "COMBINED_analysis/TrueReddit_analysis.json"]
     comment_files = ["sentiment_analyses/changemyview_analysis.json", "sentiment_analyses/Conservative_analysis.json", "sentiment_analyses/conspiracy_analysis.json", "sentiment_analyses/democrats_analysis.json", "sentiment_analyses/PoliticalDiscussion_analysis.json", "sentiment_analyses/politics_analysis.json", "sentiment_analyses/TrueReddit_analysis.json"]
-    makeWordClouds(combined_files)
-    # makePieChart(comment_files)
+    # makeWordClouds(combined_files)
+    makePieChart(comment_files)
