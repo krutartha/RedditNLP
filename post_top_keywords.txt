@@ -1,0 +1,496 @@
+------ \changemyview_negatives.json_po Top Post Keywords ----------
+
+- people | 115
+- person | 70
+- israel | 65
+- crime | 50
+- thing | 45
+- way | 45
+- good | 45
+- someone | 45
+- life | 40
+- brain | 40
+- cmv | 39
+- everyone | 35
+- same | 35
+- things | 35
+- talley | 30
+- wrong | 30
+- list | 30
+- something | 30
+- gaza | 25
+- death | 25
+- number | 25
+- reason | 25
+- ratio | 25
+- reasonable | 25
+
+
+------ \changemyview_neutrals.json_pos Top Post Keywords ----------
+
+- cmv | 10
+- men | 5
+- child | 5
+- well-being | 5
+- pre-parenting | 5
+- evaluations | 5
+
+
+------ \changemyview_positives.json_po Top Post Keywords ----------
+
+- english | 55
+- cmv | 36
+- other | 35
+- solar | 35
+- dialects | 35
+- profit | 35
+- people | 32
+- good | 30
+- way | 28
+- northern | 25
+- others | 24
+- quality | 21
+- europe | 20
+- western | 20
+- european | 20
+- country | 20
+- similar | 20
+- most | 20
+- money | 20
+- standard | 20
+- understandable | 20
+- guys | 20
+- companies | 20
+- value | 20
+
+
+------ \Conservative_negatives.json_po Top Post Keywords ----------
+
+- illegal | 16
+- easter | 12
+- biden | 12
+- college | 10
+- trump | 10
+- man | 10
+- gag | 9
+- order | 9
+- americans | 8
+- immigrants | 8
+- migrants | 7
+- judge | 7
+- republican | 6
+- protesters | 6
+- vigil | 6
+- patrick | 6
+- cathedral | 6
+- next | 6
+- scotus | 6
+- nominee | 6
+- immigrant | 6
+- sunday | 6
+- trumps | 6
+- immigration | 6
+
+
+------ \Conservative_neutrals.json_pos Top Post Keywords ----------
+
+- vaccine | 6
+- house | 5
+- marjorie | 5
+- taylor | 5
+- greene | 5
+- charge | 5
+- easter | 4
+- biden | 4
+- republican | 4
+- gaza | 4
+- resurfaced | 4
+- clip | 4
+- quick | 4
+- books | 3
+- joe | 3
+- tha | 3
+- money🤣🤣🤣 | 3
+- harvard | 3
+- applications | 3
+- potential | 3
+- harbinger | 3
+- other | 3
+- schools | 3
+- children | 3
+
+
+------ \Conservative_positives.json_po Top Post Keywords ----------
+
+- trump | 11
+- city | 9
+- free | 8
+- biden | 7
+- easter | 7
+- border | 7
+- wherever | 7
+- libertarian | 6
+- top | 6
+- official | 6
+- denver | 6
+- tape | 6
+- illegals | 6
+- damage | 5
+- control | 5
+- wishes | 5
+- happy | 5
+- rfk | 4
+- candidate | 4
+- election | 4
+- leftist | 4
+- agents | 4
+- camera | 4
+- migrants | 4
+
+
+------ \conspiracy_negatives.json_post Top Post Keywords ----------
+
+- people | 68
+- eclipse | 51
+- future | 40
+- conspiracy | 35
+- theory | 29
+- other | 29
+- day | 27
+- war | 26
+- solar | 24
+- same | 24
+- things | 24
+- america | 24
+- way | 23
+- many | 22
+- new | 20
+- china | 20
+- anyone | 20
+- fentanyl | 20
+- generations | 20
+- reels | 20
+- nation | 19
+- little | 19
+- show | 19
+- amp | 19
+
+
+------ \conspiracy_neutrals.json_post_ Top Post Keywords ----------
+
+- april | 13
+- amp | 11
+- anyone | 10
+- https | 9
+- cern | 8
+- construction | 8
+- eclipse | 7
+- brother | 5
+- gate | 5
+- satan | 5
+- elite | 5
+- christ | 5
+- has | 5
+- symbol | 5
+- time | 5
+- traveller | 5
+- undisclosed | 5
+- point | 5
+- future | 5
+- reality | 5
+- ama | 5
+- was | 5
+- inside | 5
+- job | 5
+
+
+------ \conspiracy_positives.json_post Top Post Keywords ----------
+
+- world | 79
+- god | 56
+- realm | 52
+- amp | 48
+- time | 40
+- people | 32
+- days | 30
+- something | 29
+- https | 28
+- apr= | 27
+- words | 25
+- anything | 24
+- realms | 24
+- creator | 24
+- sin | 24
+- april | 24
+- few | 23
+- anyone | 23
+- humanity | 22
+- wi-fi | 20
+- things | 20
+- real | 20
+- likely | 20
+- great | 20
+
+
+------ \democrats_negatives.json_post_ Top Post Keywords ----------
+
+- trump | 28
+- mortgage | 16
+- donald | 12
+- officer | 12
+- kim | 10
+- judge | 8
+- slain | 8
+- diller | 8
+- jong | 5
+- otto | 5
+- warmbier | 5
+- death | 5
+- day | 5
+- hush-money | 4
+- daughter | 4
+- chavez | 4
+- apparent | 4
+- source | 4
+- claim | 4
+- statement | 4
+- right-wing | 4
+- news | 4
+- outlets | 4
+- maga | 4
+
+
+------ \democrats_neutrals.json_post_k Top Post Keywords ----------
+
+- trump | 7
+- chinese | 5
+- accounts | 5
+- fans | 5
+- ahead | 5
+- election | 5
+- texas | 4
+- climate | 4
+- change | 4
+- humans | 4
+- biden | 4
+- easter | 4
+- cognitive | 4
+- dissonance | 4
+- pee | 3
+- rule | 3
+- major | 3
+- airlines | 3
+- women | 3
+- age | 3
+- 10-50 | 3
+- airport | 3
+- pregnancy | 3
+- tests | 3
+
+
+------ \democrats_positives.json_post_ Top Post Keywords ----------
+
+- biden | 13
+- trump | 12
+- republican | 9
+- americans | 5
+- admits | 5
+- impeachment | 5
+- probe | 5
+- crime | 5
+- joe | 5
+- happy | 5
+- easter | 5
+- climate-denying | 4
+- religious | 4
+- states | 4
+- climate | 4
+- change | 4
+- meets | 4
+- reality | 4
+- satisfaction | 4
+- today | 4
+- millions | 4
+- transgender | 4
+- nonbinary | 4
+- dignity | 4
+
+
+------ \PoliticalDiscussion_negatives. Top Post Keywords ----------
+
+- biden | 20
+- israel | 16
+- left | 8
+- many | 8
+- conservative | 8
+- trump | 8
+- never-trumpers | 8
+- anti-biden | 4
+- equivalent | 4
+- never-trump | 4
+- right | 4
+- attack | 4
+- oct | 4
+- last | 4
+- year | 4
+- hamas | 4
+- forceful | 4
+- response | 4
+- terrorism | 4
+- democrats | 4
+- unacceptable | 4
+- point | 4
+- november | 4
+- group | 4
+
+
+------ \PoliticalDiscussion_positives. Top Post Keywords ----------
+
+- special | 8
+- representation | 8
+- autonomous | 8
+- county | 8
+- state | 8
+- legislatures | 8
+- natives | 4
+- rights | 4
+- government | 4
+- mean | 4
+- voices | 4
+- higher | 4
+- autonomy | 4
+- counties | 4
+- states | 4
+- example | 4
+- native | 4
+- land | 4
+- other | 4
+- own | 4
+- charter/constitution | 4
+- leadership | 4
+- laws | 4
+- ordinances | 4
+
+
+------ \politics_negatives.json_post_k Top Post Keywords ----------
+
+- trump | 40
+- biden | 29
+- easter | 26
+- gaza | 25
+- house | 24
+- republican | 20
+- day | 18
+- visibility | 18
+- u.s. | 16
+- transgender | 15
+- white | 15
+- republicans | 15
+- weapons | 13
+- election | 13
+- attacks | 12
+- majority | 12
+- thins | 12
+- trans | 11
+- johnson | 11
+- murphy | 10
+- call | 10
+- congressman | 10
+- rep. | 10
+- hiroshima | 10
+
+
+------ \politics_neutrals.json_post_ke Top Post Keywords ----------
+
+- trump | 36
+- biden | 24
+- gop | 18
+- state | 10
+- michigan | 9
+- gaza | 9
+- republicans | 8
+- immigration | 8
+- republican | 8
+- congressman | 8
+- ukraine | 7
+- campaign | 7
+- democrats | 7
+- comeback | 5
+- common | 5
+- lesson | 5
+- msnbc | 5
+- uproar | 5
+- bible | 5
+- business | 5
+- rein | 5
+- dei | 5
+- becoming | 5
+- florida | 5
+
+
+------ \politics_positives.json_post_k Top Post Keywords ----------
+
+- trump | 30
+- biden | 16
+- republican | 14
+- more | 12
+- party | 9
+- power | 8
+- secret | 8
+- agenda | 8
+- security | 8
+- workweek | 8
+- bill | 8
+- workers | 7
+- california | 7
+- new | 7
+- labor | 6
+- great | 6
+- election | 6
+- berkeley | 5
+- activists | 5
+- holocaust | 5
+- survivor | 5
+- laugh | 5
+- antisemitism | 5
+- story | 5
+
+
+------ \TrueReddit_negatives.json_post Top Post Keywords ----------
+
+- hate | 18
+- moderation | 12
+- topic | 12
+- speech | 12
+- israel/palestine | 9
+- people | 9
+- posts | 6
+- thing | 6
+- sitewide | 6
+- problem | 6
+- place | 6
+- rules | 6
+- level | 6
+- discourse | 6
+- site | 6
+- long | 6
+- anything | 6
+- other | 3
+- concerns | 3
+- sunday | 3
+- night | 3
+- est | 3
+- april | 3
+- fool | 3
+
+
+------ \TrueReddit_positives.json_post Top Post Keywords ----------
+
+- quiet | 4
+- disappearance | 4
+- safe | 4
+- deposit | 4
+- box | 4
+- dying | 3
+- advocates | 3
+- compassion | 3
