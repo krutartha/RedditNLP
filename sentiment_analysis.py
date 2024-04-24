@@ -20,7 +20,8 @@ def sentiment(comment_scrape_file_array):
             for comments in post['comments']:
                 cummulative_comment += comments
             sentiment_scores = sia.polarity_scores(cummulative_comment)
-            entry = dict(title=title, description=description, sentiment_scores=sentiment_scores)
+            time = post['time']
+            entry = dict(title=title, description=description, time=time, sentiment_scores=sentiment_scores)
             scores.append(entry)
         json.dump(scores, w)
     
