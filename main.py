@@ -119,11 +119,12 @@ def commentScrapeBySubreddit(subreddit_comment_id_file_array, headers):
             data = requests.get("https://oauth.reddit.com/r/" + comment.strip(), headers=headers, params={'limit': '5'}).json() #make API request to get the entire post
             title = data[0]['data']['children'][0]['data']['title'] #index the data to obtain the post title
             selftext = data[0]['data']['children'][0]['data']['selftext'] ##index the data to obtain the post description provided by OP
+            time = data[0]['data']['children'][0]['data']['created']
             post_comments = [] #create comment array to store all comments and sub comments of the post
             for thread in data[1:]: #iterate over each thread within the post
                 for subthread in thread['data']['children'][:-1]: #iterate over each sub thread
                     post_comments.append(subthread['data']['body']) #append each comment in subthread to post_comments_array
-            entry = dict(title=title, description=selftext, comments=post_comments) #create a dict to hold the title, description, and ALL the comments of the post
+            entry = dict(title=title, description=selftext, time=time, comments=post_comments) #create a dict to hold the title, description, and ALL the comments of the post
             #print(entry) #was using this for testing
             posts.append(entry)
         json.dump(posts, w) #dump dict into the custom subreddit comment_scrape file
