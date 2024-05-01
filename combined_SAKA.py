@@ -3,6 +3,10 @@ from nltk.tokenize import word_tokenize
 from nltk import pos_tag
 from nltk.sentiment import SentimentIntensityAnalyzer
 import os
+import nltk
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+
 
 def extract_keyword_and_count(text):
     tokens = word_tokenize(text)
