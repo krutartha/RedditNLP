@@ -52,6 +52,12 @@ Content-wise, our project utilizes skills learned in lecture and additionally re
 By completing this project, we hope for not only personal growth but also the potential to contribute meaningful insights to the broader discourse surrounding societal polarization and information consumption in the digital age. 
 
 
+## To generate graphs:
+
+- Run main.py with the correct credentials for CLIENT_ID, USERNAME, PASSWORD
+- Install required nltk modules
+- Run combined_SAKA.py file 
+
 ## Work Plan
 
 Week 1: Planning and Data Gathering
