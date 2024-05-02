@@ -2,6 +2,7 @@ import json
 from nltk.sentiment import SentimentIntensityAnalyzer
 import os
 import matplotlib.pyplot as plt
+from scipy import stats
 
 
 def sentiment(comment_scrape_file_array):
@@ -27,40 +28,47 @@ def sentiment(comment_scrape_file_array):
         json.dump(scores, w)
     
 def overTime(sentiment_analysis_file_array):
+    if (not os.path.exists('over_time')):
+        os.mkdir('over_time')
     # for every subreddit
     for file in sentiment_analysis_file_array:
+        sub_name = file.split("_")[1][8:]
         r = open(file, "r")
         comments = json.load(r)  # load in the sentiment labelled text
         time = []
         yPos = []
         yNeg = []
+        timeUnchanged = []
 
         # for every post in that subreddit
         for comment in comments:
-
             # add to the relevant lists
             yPos.append(comment['sentiment_scores']['pos'])
             yNeg.append(comment['sentiment_scores']['neg'])
-            # TODO convert timestamp to proper time format
-            time.append(comment['time'])
+            # convert timestamp to proper format, but still save the original timestamp
+            convertedTime = datetime.fromtimestamp(comment['time'])
+            timeUnchanged.append(comment['time'])
+            time.append(convertedTime)
 
         # print the graph for positive sentiment over time
-        plt.plot(time, yPos)
+        plt.scatter(time, yPos, c='black')
         plt.xlabel('Time')
         plt.ylabel('Sentiment')
         sub_reddit_name = file.split("_")[1][9:]
         # print(sub_reddit_name)
         plt.title('Positive Sentiment Over Time in r/' + sub_reddit_name)  # split gets the subreddit name
-        #TODO Save graph to a file. See charts.py for reference
-        # plt.show()
+        plt.suptitle('Correlation score: ' + str(stats.pearsonr(timeUnchanged, yPos).statistic))
+        # Save graph to a file
+        plt.savefig('over_time' + sub_name + "_positive.png", dpi=300)
 
         # print the graph for negative sentiment over time
-        plt.plot(time, yNeg)
+        plt.scatter(time, yNeg, c='black')
         plt.xlabel('Time')
         plt.ylabel('Sentiment')
-        plt.title('Negative Sentiment Over Time in r/' + sub_reddit_name)  # split gets the subreddit name        
-        #TODO Save graph to a file. See charts.py for reference
-        # plt.show()
+        plt.title('Negative Sentiment Over Time in r/' + sub_reddit_name)  # split gets the subreddit name
+        plt.suptitle('Correlation score: ' + str(stats.pearsonr(timeUnchanged, yNeg).statistic))
+        # Save graph to a file
+        plt.savefig('over_time' + sub_name + "_negative.png", dpi=300)
 
 
 
