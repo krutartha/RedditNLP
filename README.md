@@ -5,6 +5,7 @@
 pip install -r requirements.txt
 python main.py
 python sentiment_analysis.py
+python 
 ```
 
 **Note**: Ensure you have set the necessary variables in your local ***.env*** file!
