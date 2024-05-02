@@ -112,11 +112,11 @@ def commentScrapeBySubreddit(subreddit_comment_id_file_array, headers):
     for comment_id_file in subreddit_comment_id_file_array: #iterate over each file in input array
         r = open(comment_id_file, 'r') #open the respective file
         comments = r.readlines() #read each line from opened file to get comment id
-        current_sub = comments[0].split("/")[0] #define current subreddit
+        current_sub = comments[0].split("/")[0] #extract current subreddit name
         w = open("comment_scrapes/"+current_sub+"_comment_scrape.json", "w") #create dump file for the current subreddit
         posts = [] #array to hold each post 
         for comment in comments: #iterate over each comment id in sub_comment_id_file
-            data = requests.get("https://oauth.reddit.com/r/" + comment.strip(), headers=headers, params={'limit': '5'}).json() #make API request to get the entire post
+            data = requests.get("https://oauth.reddit.com/r/" + comment.strip(), headers=headers).json() #make API request to get the entire post
             title = data[0]['data']['children'][0]['data']['title'] #index the data to obtain the post title
             selftext = data[0]['data']['children'][0]['data']['selftext'] ##index the data to obtain the post description provided by OP
             time = data[0]['data']['children'][0]['data']['created']
@@ -125,7 +125,7 @@ def commentScrapeBySubreddit(subreddit_comment_id_file_array, headers):
                 for subthread in thread['data']['children'][:-1]: #iterate over each sub thread
                     post_comments.append(subthread['data']['body']) #append each comment in subthread to post_comments_array
             entry = dict(title=title, description=selftext, time=time, comments=post_comments) #create a dict to hold the title, description, and ALL the comments of the post
-            #print(entry) #was using this for testing
+            # print(entry) #was using this for testing
             posts.append(entry)
         json.dump(posts, w) #dump dict into the custom subreddit comment_scrape file
         r.close() #close fd
@@ -161,49 +161,49 @@ def dataCollection():
 # Author: Ashley
     # To run this program, uncomment the chunk of code using 'Ctrl/Cmd + /'
     # These lines scrape the top 100 most controversial posts from each subreddit into a json file
-    f = open("scrape.json", "w")
-    json.dump(requests.get("https://oauth.reddit.com/r/conspiracy/controversial", headers=headers,
-    params={'limit': '100'}).json(), f)
-    f.close()
+    # f = open("scrape.json", "w")
+    # json.dump(requests.get("https://oauth.reddit.com/r/conspiracy/controversial", headers=headers,
+    # params={'limit': '100'}).json(), f)
+    # f.close()
 
-    f = open("scrape1.json", "w")
-    json.dump(requests.get("https://oauth.reddit.com/r/politics/controversial", headers=headers,
-    params={'limit': '100'}).json(), f)
-    f.close()
+    # f = open("scrape1.json", "w")
+    # json.dump(requests.get("https://oauth.reddit.com/r/politics/controversial", headers=headers,
+    # params={'limit': '100'}).json(), f)
+    # f.close()
 
-    f = open("scrape2.json", "w")
-    json.dump(requests.get("https://oauth.reddit.com/r/TrueReddit/controversial", headers=headers,
-    params={'limit': '100'}).json(), f)
-    f.close()
+    # f = open("scrape2.json", "w")
+    # json.dump(requests.get("https://oauth.reddit.com/r/TrueReddit/controversial", headers=headers,
+    # params={'limit': '100'}).json(), f)
+    # f.close()
 
-    f = open("scrape3.json", "w")
-    json.dump(requests.get("https://oauth.reddit.com/r/PoliticalDiscussion/controversial", headers=headers,
-    params={'limit': '100'}).json(), f)
-    f.close()
+    # f = open("scrape3.json", "w")
+    # json.dump(requests.get("https://oauth.reddit.com/r/PoliticalDiscussion/controversial", headers=headers,
+    # params={'limit': '100'}).json(), f)
+    # f.close()
 
-    f = open("scrape4.json", "w")
-    json.dump(requests.get("https://oauth.reddit.com/r/changemyview/controversial", headers=headers,
-    params={'limit': '100'}).json(), f)
-    f.close()
+    # f = open("scrape4.json", "w")
+    # json.dump(requests.get("https://oauth.reddit.com/r/changemyview/controversial", headers=headers,
+    # params={'limit': '100'}).json(), f)
+    # f.close()
 
-    f = open("scrape5.json", "w")
-    json.dump(requests.get("https://oauth.reddit.com/r/Conservative/controversial", headers=headers,
-    params={'limit': '100'}).json(), f)
-    f.close()
+    # f = open("scrape5.json", "w")
+    # json.dump(requests.get("https://oauth.reddit.com/r/Conservative/controversial", headers=headers,
+    # params={'limit': '100'}).json(), f)
+    # f.close()
 
-    f = open("scrape6.json", "w")
-    json.dump(requests.get("https://oauth.reddit.com/r/democrats/controversial", headers=headers,
-    params={'limit': '100'}).json(), f)
-    f.close()
+    # f = open("scrape6.json", "w")
+    # json.dump(requests.get("https://oauth.reddit.com/r/democrats/controversial", headers=headers,
+    # params={'limit': '100'}).json(), f)
+    # f.close()
 
-    #iterate over comment_id.txt file and look collect comment information into commentScrape.json
-    r = open("comment_ids.txt", "r")
-    w = open("commentScrape.json", "w")
-    comments = r.readlines()
-    for comment in comments:
-        json.dump(requests.get("https://oauth.reddit.com/r/" + comment.strip(), headers=headers, params={'limit': '5'}).json(), w)
-    r.close()
-    w.close()
+    # #iterate over comment_id.txt file and look collect comment information into commentScrape.json
+    # r = open("comment_ids.txt", "r")
+    # w = open("commentScrape.json", "w")
+    # comments = r.readlines()
+    # for comment in comments:
+    #     json.dump(requests.get("https://oauth.reddit.com/r/" + comment.strip(), headers=headers, params={'limit': '5'}).json(), w)
+    # r.close()
+    # w.close()
     
     #commentScrapeBySubreddit is called here so it can get the headers from auth token of API
     comment_id_files_array = ["comment_ids/changemyview_comment_ids.txt", "comment_ids/Conservative_comment_ids.txt", "comment_ids/conspiracy_comment_ids.txt", "comment_ids/democrats_comment_ids.txt", "comment_ids/PoliticalDiscussion_comment_ids.txt", "comment_ids/politics_comment_ids.txt", "comment_ids/TrueReddit_comment_ids.txt"]
@@ -214,9 +214,9 @@ def dataCollection():
 if __name__ == '__main__':
     dataCollection()
     # List of files to extract comment IDs from
-    files_to_scrape = ["scrape.json", "scrape1.json", "scrape2.json", "scrape3.json", "scrape4.json", "scrape5.json", "scrape6.json"]
-    getCommentIDs(files_to_scrape)
-    commentIdBySubreddit("comment_ids.txt")
+    # files_to_scrape = ["scrape.json", "scrape1.json", "scrape2.json", "scrape3.json", "scrape4.json", "scrape5.json", "scrape6.json"]
+    # getCommentIDs(files_to_scrape)
+    # commentIdBySubreddit("comment_ids.txt")
     
-    commentScrapeBySubreddit(comment_id_files_array)
-    splitCommentFile("test.json")
+    # commentScrapeBySubreddit(comment_id_files_array)
+    # splitCommentFile("test.json")
