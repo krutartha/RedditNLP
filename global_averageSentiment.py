@@ -3,7 +3,12 @@ import os
 import statistics
     
 def getAverageStructure():
-    dirpath = "/Users/sensh/Desktop/RedditNLP-main/data_analysis"
+    os_string = (os.getcwd() + "\data_analysis")
+    new_string = os_string.replace("\\", "/")
+    subname = ""
+                                         
+    dirpath = new_string
+
     files = [os.path.join(dirpath, file) for file in os.listdir(dirpath) if os.path.isfile(os.path.join(dirpath, file))]   
     filename_data_dict = {}
     
@@ -32,13 +37,17 @@ def getAverageStructure():
                 dataDict[compound_value].append(comm_sent_val)
             else:
                 dataDict[compound_value] = [comm_sent_val]
-                
-        filename_data_dict[file[50:]] = dataDict
+        
+        x = file.split("\\")
+        filename_data_dict[x[1]] = dataDict
 
     return filename_data_dict
 
 def getPostKeywordStructure():
-    dirpath = "/Users/sensh/Desktop/RedditNLP-main/data_analysis"
+    os_string = (os.getcwd() + "\data_analysis")
+    new_string = os_string.replace("\\", "/")
+                                         
+    dirpath = new_string
     files = [os.path.join(dirpath, file) for file in os.listdir(dirpath) if os.path.isfile(os.path.join(dirpath, file))]   
 
     if(not os.path.exists('subreddit_post_keywords')):
@@ -47,7 +56,8 @@ def getPostKeywordStructure():
     for file in files:
         r = open(file, "r")
         posts = json.load(r)
-        current_file = file[50:]
+        x = file.split("\\")
+        current_file = x[1]
         postKW_dict = {}
 
         w = open("subreddit_post_keywords/"+current_file+"_post_keywords.json", "w")
@@ -85,7 +95,10 @@ def getPostKeywordStructure():
         json.dump(postKW_dict, w)
 
 def getCommentKeywordStructure():
-    dirpath = "/Users/sensh/Desktop/RedditNLP-main/data_analysis"
+    os_string = (os.getcwd() + "\data_analysis")
+    new_string = os_string.replace("\\", "/")
+                                         
+    dirpath = new_string
     files = [os.path.join(dirpath, file) for file in os.listdir(dirpath) if os.path.isfile(os.path.join(dirpath, file))]   
 
     if(not os.path.exists('subreddit_keywords')):
@@ -94,7 +107,8 @@ def getCommentKeywordStructure():
     for file in files:
         r = open(file, "r")
         posts = json.load(r)
-        current_file = file[50:]
+        x = file.split("\\")
+        current_file = x[1]
         commentKW_Dict = {}
     
         w = open("subreddit_comment_keywords/"+current_file+"_comment_keywords.json", "w")
@@ -121,62 +135,75 @@ def getCommentKeywordStructure():
         json.dump(commentKW_Dict, w)
 
 def computeAverages(allDataDict):
-    # {'changemyview_negatives.json': {-0.8836: [-0.895, -0.5647, 0.3182, -0.8823],  -0.9995: [0.6124, -0.6808, 0.7003, -0.9704, -0.8315] }
+    with open("Averages.txt", "w") as output_file:
+        for file_name in allDataDict:
+            commentAverageList = []
+            post_average = 0
+            fileDataDict = allDataDict[file_name]
 
-    for file_name in allDataDict:
-        commentAverageList = []
-        post_average = 0
-        fileDataDict = allDataDict[file_name]
+            for postSentVal in fileDataDict:
+                comment_average = statistics.mean(fileDataDict[postSentVal])
+                post_average = statistics.mean(fileDataDict.keys())
+                commentAverageList.append(comment_average)
 
-        for postSentVal in fileDataDict:
-            comment_average = statistics.mean( fileDataDict[postSentVal] )
-            post_average = statistics.mean(fileDataDict.keys())
-            commentAverageList.append(comment_average)
-
-        commentAverage= statistics.mean(commentAverageList)
-
-        print("-------" + file_name + " AVERAGES -------\n")
-        print("Post Average: " + str(post_average) + "\n")
-        print("Comment Average: " + str(commentAverage) + "\n")
-        print ("\n")
+            if commentAverageList == []:
+                commentAverage = 0
+            else: 
+                commentAverage = statistics.mean(commentAverageList)
+    
+            output_file.write("-------" + file_name + " AVERAGES -------\n\n")
+            output_file.write("Post Average: " + str(post_average) + "\n\n")
+            output_file.write("Comment Average: " + str(commentAverage) + "\n\n")
+            output_file.write("\n")
 
 def printTop20PostKW():
-    dirpath = "/Users/sensh/Desktop/RedditNLP-main/subreddit_post_keywords"
+    os_string = (os.getcwd() + "\subreddit_post_keywords")
+    new_string = os_string.replace("\\", "/")
+    dirpath = new_string
     files = [os.path.join(dirpath, file) for file in os.listdir(dirpath) if os.path.isfile(os.path.join(dirpath, file))]   
     
-    for file in files:
-        current_file = file[59:90]
-        print("------ " + current_file + " Top Post Keywords ----------\n")
-        r = open(file, "r")
-        dict = json.load(r)
+    with open("Top20PostKW.txt", "w", encoding='utf-8') as output_file:
+        for file in files:
+            x = file.split("\\")
+            current_file = x[1]
+            output_file.write("------ " + current_file + " Top Post Keywords ----------\n\n")
+            r = open(file, "r")
+            dict_data = json.load(r)
 
-        sortedPostKeywords = sorted(dict.items(), key=lambda x: x[1], reverse=True)
-        topKW = sortedPostKeywords[:24]
-        for word in topKW:
-            print("- " + word[0] + " | " + str(word[1]))
-        print("\n")
+            sortedPostKeywords = sorted(dict_data.items(), key=lambda x: x[1], reverse=True)
+            topKW = sortedPostKeywords[:24]
+            for word in topKW:
+                output_file.write("- " + word[0] + " | " + str(word[1]) + "\n")
+            output_file.write("\n")
 
 def printTop20CommentKW():
-    dirpath = "/Users/sensh/Desktop/RedditNLP-main/subreddit_comment_keywords"
-    files = [os.path.join(dirpath, file) for file in os.listdir(dirpath) if os.path.isfile(os.path.join(dirpath, file))]   
+    os_string = (os.getcwd() + "\subreddit_comment_keywords")
+    new_string = os_string.replace("\\", "/")
 
-    for file in files:
-        current_file = file[53:95]
-        print("------ " + current_file + " Top Comment Keywords ----------\n")
-        r = open(file, "r")
-        dict = json.load(r)
+    dirpath = new_string
+    files = [os.path.join(dirpath, file) for file in os.listdir(dirpath) if os.path.isfile(os.path.join(dirpath, file))]
+    
+    with open("Top20CommentKW.txt", "w") as output_file:
+        for file in files:
+            x = file.split("\\")
+            current_file = x[1]
+            output_file.write("------ " + current_file + " Top Comment Keywords ----------\n\n")
+            r = open(file, "r")
+            dict_data = json.load(r)
 
-        sortedPostKeywords = sorted(dict.items(), key=lambda x: x[1], reverse=True)
-        topKW = sortedPostKeywords[:24]
-        for word in topKW:
-            print("- " + word[0] + " | " + str(word[1]))
-        print("\n")
+            sortedPostKeywords = sorted(dict_data.items(), key=lambda x: x[1], reverse=True)
+            topKW = sortedPostKeywords[:24]
+            for word in topKW:
+                output_file.write("- " + word[0] + " | " + str(word[1]) + "\n")
+            output_file.write("\n")
+
         
 if __name__ == '__main__':
     getCommentKeywordStructure()
+    printTop20CommentKW()
+    
     getPostKeywordStructure()
     printTop20PostKW()
-    print("\n\n\n\n")
-    printTop20CommentKW()
-    # getPostKeywordStructure()
-    # getPostKeywordStructure()
+    
+    x = getAverageStructure()
+    computeAverages(x)

@@ -2,8 +2,8 @@ import json
 import os
     
 def sentiment_sorting(combined_analysis_finals):
-    if(not os.path.exists('post_partitioning')):
-        os.mkdir('post_partitioning')
+    if(not os.path.exists('data_analysis')):
+        os.mkdir('data_analysis')
     
     for file in combined_analysis_finals:
         dir_filename = (file.split("_")[1][8:]) + "_sorting"
@@ -37,13 +37,13 @@ def sentiment_sorting(combined_analysis_finals):
             else:
                 negative.append(post)
 
-        a = open("post_partitioning/"+current_sub+"_negatives.json", "w")
+        a = open("data_analysis/"+current_sub+"_negatives.json", "w")
         json.dump(negative, a)
 
-        b = open("post_partitioning/"+current_sub+"_positives.json", "w")
+        b = open("data_analysis/"+current_sub+"_positives.json", "w")
         json.dump(positive, b)
 
-        c = open("post_partitioning/"+current_sub+"_neutrals.json", "w")
+        c = open("data_analysis/"+current_sub+"_neutrals.json", "w")
         json.dump(neutral, c)
 
     
