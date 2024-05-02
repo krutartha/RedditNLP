@@ -3,6 +3,7 @@ from nltk.sentiment import SentimentIntensityAnalyzer
 import os
 import matplotlib.pyplot as plt
 from scipy import stats
+from datetime import datetime 
 
 
 def sentiment(comment_scrape_file_array):
@@ -26,6 +27,7 @@ def sentiment(comment_scrape_file_array):
             entry = dict(title=title, description=description, time=time, sentiment_scores=sentiment_scores)
             scores.append(entry)
         json.dump(scores, w)
+        print("Created sentiment_analyses/"+current_sub+"_analysis.json")
     
 def overTime(sentiment_analysis_file_array):
     if (not os.path.exists('over_time')):
@@ -60,6 +62,7 @@ def overTime(sentiment_analysis_file_array):
         plt.suptitle('Correlation score: ' + str(stats.pearsonr(timeUnchanged, yPos).statistic))
         # Save graph to a file
         plt.savefig('over_time' + sub_name + "_positive.png", dpi=300)
+        print("Created over_time" + sub_name + "_positive.png")
 
         # print the graph for negative sentiment over time
         plt.scatter(time, yNeg, c='black')
@@ -69,13 +72,17 @@ def overTime(sentiment_analysis_file_array):
         plt.suptitle('Correlation score: ' + str(stats.pearsonr(timeUnchanged, yNeg).statistic))
         # Save graph to a file
         plt.savefig('over_time' + sub_name + "_negative.png", dpi=300)
+        print("Created over_time" + sub_name + "_negative.png")
 
-
-
-if __name__ == '__main__':
+def main():
     files = ["comment_scrapes/changemyview_comment_scrape.json", "comment_scrapes/Conservative_comment_scrape.json", "comment_scrapes/conspiracy_comment_scrape.json", "comment_scrapes/democrats_comment_scrape.json", "comment_scrapes/PoliticalDiscussion_comment_scrape.json", "comment_scrapes/politics_comment_scrape.json", "comment_scrapes/TrueReddit_comment_scrape.json"]
     files_sa = ["sentiment_analyses/changemyview_analysis.json", "sentiment_analyses/Conservative_analysis.json", "sentiment_analyses/conspiracy_analysis.json", "sentiment_analyses/democrats_analysis.json", "sentiment_analyses/PoliticalDiscussion_analysis.json", "sentiment_analyses/politics_analysis.json", "sentiment_analyses/TrueReddit_analysis.json"]
-    # sentiment(files)
+    print("Analysing sentiment for each comment from each subreddit!")
+    sentiment(files)
+    print("############################################################")
+    print("Creating over time sentiment graphs...")
     overTime(files_sa)
-    # sia = SentimentIntensityAnalyzer()
-    # print(sia.polarity_scores("hello"))
+    print("############################################################")
+
+if __name__ == '__main__':
+    main()

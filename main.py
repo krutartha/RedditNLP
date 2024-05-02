@@ -8,33 +8,6 @@ import json
 import requests
 from nltk.sentiment import SentimentIntensityAnalyzer
 
-##########################################################################################
-# Author: Kru
-
-# TODO: Store each subreddit's comment in one it's own separate file
-# TODO: Perform textual sentiment analysis of each of the files using nltk
-
-def splitCommentFile(comment_scrape_file):
-    input_file = open(comment_scrape_file)
-    json_array = json.load(input_file)
-    store_list = json_array[0]
-    print(store_list)
-    # with open(comment_scrape_file, 'r') as comment_scrape_file_json:
-    #     print(comment_scrape_file_json[0])
-        # data = json.load(comment_scrape_file_json)
-    
-    # for child in data['data']['children']:
-    #     subreddit = child['data'].get('subreddit', '')
-    #     print(subreddit)
-    
-    # sia = SentimentIntensityAnalyzer()
-    # print(sia.polarity_scores("Wow, NLTK is really powerful!"))
-    
-
-
-
-##########################################################################################
-
 # Author: Adya
 
 # TODO: This method extracts comment ID of posts from the scrape files
@@ -96,6 +69,7 @@ def commentIdBySubreddit(comment_ids_file):
             w = open("comment_ids/" + current_subbreddit+"_comment_ids.txt", "w") #create new file for the new sr
             w.write(comment) #write comment id to newly created file
             subreddits.append(current_subbreddit) #append the sr to sr array
+            print("created comment_ids/" + current_subbreddit+"_comment_ids.txt")
     return subreddits # return sr array
 ######################################################################
 
@@ -128,6 +102,7 @@ def commentScrapeBySubreddit(subreddit_comment_id_file_array, headers):
             # print(entry) #was using this for testing
             posts.append(entry)
         json.dump(posts, w) #dump dict into the custom subreddit comment_scrape file
+        print("Created comment_scrapes/"+current_sub+"_comment_scrape.json")
         r.close() #close fd
         w.close() #close fd
         
@@ -152,10 +127,10 @@ def dataCollection():
     res = requests.post('https://www.reddit.com/api/v1/access_token', auth=auth, data=data, headers=headers)
     TOKEN = res.json()['access_token']
     headers['Authorization'] = f'bearer {TOKEN}'
-    print(headers)
+    # print(headers)
 
     # test to make sure the token is taken, should print with exit code 0
-    print(requests.get("https://oauth.reddit.com/api/v1/me", headers=headers).json())
+    # print(requests.get("https://oauth.reddit.com/api/v1/me", headers=headers).json())
 
 ##########################################################################################
 # Author: Ashley
@@ -204,19 +179,29 @@ def dataCollection():
     #     json.dump(requests.get("https://oauth.reddit.com/r/" + comment.strip(), headers=headers, params={'limit': '5'}).json(), w)
     # r.close()
     # w.close()
-    
+    print("############################################################")
+    print("Welcome to our project!!")
+    print("REDDIT NLP - Investigating Echo Chambers!")
+    print("############################################################")
+    print("Commencing Data Collection....")
+    files_to_scrape = ["scrape.json", "scrape1.json", "scrape2.json", "scrape3.json", "scrape4.json", "scrape5.json", "scrape6.json"]
+    print("Getting comment Ids from general scrape file:")
+    getCommentIDs(files_to_scrape)
+    print("Comment Ids have been dumped to comment_ids.txt")
+    print("############################################################")
+    print("Creating subreddit file for every comment from the comment id file....")
+    commentIdBySubreddit("comment_ids.txt")
+    print("############################################################")
     #commentScrapeBySubreddit is called here so it can get the headers from auth token of API
+    print("Scraping comments for every subreddit from the respective comment id file....")
     comment_id_files_array = ["comment_ids/changemyview_comment_ids.txt", "comment_ids/Conservative_comment_ids.txt", "comment_ids/conspiracy_comment_ids.txt", "comment_ids/democrats_comment_ids.txt", "comment_ids/PoliticalDiscussion_comment_ids.txt", "comment_ids/politics_comment_ids.txt", "comment_ids/TrueReddit_comment_ids.txt"]
     commentScrapeBySubreddit(comment_id_files_array, headers)
+    print("############################################################")
     
 
+import sentiment_analysis
 
 if __name__ == '__main__':
-    dataCollection()
-    # List of files to extract comment IDs from
-    # files_to_scrape = ["scrape.json", "scrape1.json", "scrape2.json", "scrape3.json", "scrape4.json", "scrape5.json", "scrape6.json"]
-    # getCommentIDs(files_to_scrape)
-    # commentIdBySubreddit("comment_ids.txt")
+    # dataCollection()
+    # sentiment_analysis.main()
     
-    # commentScrapeBySubreddit(comment_id_files_array)
-    # splitCommentFile("test.json")
