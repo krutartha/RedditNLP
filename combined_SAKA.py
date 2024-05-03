@@ -51,30 +51,41 @@ def SAKA(comment_scrape_file_array):
                              title_keywords=title_keyword, description_keywords=description_keyword, comment_keywords=comment_keyword)
                 scores.append(entry)
         json.dump(scores, w)
+        print("Created COMBINED_analysis/"+current_sub+"_analysis.json")
 
-files = ["changemyview_analysis.json", "Conservative_analysis.json", "conspiracy_analysis.json", "democrats_analysis.json", "PoliticalDiscussion_analysis.json", "politics_analysis.json", "TrueReddit_analysis.json"]
+def createHistogram():
+    files = ["changemyview_analysis.json", "Conservative_analysis.json", "conspiracy_analysis.json", "democrats_analysis.json", "PoliticalDiscussion_analysis.json", "politics_analysis.json", "TrueReddit_analysis.json"]
+    if(not os.path.exists('histogram')):
+        os.mkdir('histogram')
 
-plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(10, 6))
 
-for file in files:
-    with open("COMBINED_analysis/" + file, "r") as f:
-        data = json.load(f)
+    for file in files:
+        with open("COMBINED_analysis/" + file, "r") as f:
+            data = json.load(f)
 
-    # Extract the compound sentiment scores for the titles
-    title_scores = [post['title_sentiment']['compound'] for post in data]
+        # Extract the compound sentiment scores for the titles
+        title_scores = [post['title_sentiment']['compound'] for post in data]
 
-    # Create a histogram of the scores
-    plt.hist(title_scores, bins=20, edgecolor='black', alpha=0.5, label=file.split('_')[0])
+        # Create a histogram of the scores
+        plt.hist(title_scores, bins=20, edgecolor='black', alpha=0.5, label=file.split('_')[0])
 
-plt.title("Sentiment scores for post titles in various subreddits")
-plt.xlabel("Sentiment score")
-plt.ylabel("Number of posts")
-plt.legend()
-plt.show()
+    plt.title("Sentiment scores for post titles in various subreddits")
+    plt.xlabel("Sentiment score")
+    plt.ylabel("Number of posts")
+    plt.legend()
+    plt.savefig("histogram/combined_hist.png", dpi=300)
+    print("Created histogram plot at histogram/combined_hist.png")
 
     
-        
-
-if __name__ == '__main__':
+def main():
+    print("Extracting keywords and combining sentiment analysis!")
     files = ["comment_scrapes/changemyview_comment_scrape.json", "comment_scrapes/Conservative_comment_scrape.json", "comment_scrapes/conspiracy_comment_scrape.json", "comment_scrapes/democrats_comment_scrape.json", "comment_scrapes/PoliticalDiscussion_comment_scrape.json", "comment_scrapes/politics_comment_scrape.json", "comment_scrapes/TrueReddit_comment_scrape.json"]
     SAKA(files)
+    print("############################################################")
+    print("Creating Histogram for combined analysis!")
+    createHistogram()
+    print("############################################################")
+
+if __name__ == '__main__':
+    main()

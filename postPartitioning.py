@@ -6,7 +6,7 @@ def sentiment_sorting(combined_analysis_finals):
         os.mkdir('data_analysis')
     
     for file in combined_analysis_finals:
-        dir_filename = (file.split("_")[1][8:]) + "_sorting"
+        dir_filename = (file.split("_")[1][9:]) + "_sorting"
         current_sub = file.split("_")[1][8:]
 
         if not os.path.exists(dir_filename):
@@ -39,15 +39,20 @@ def sentiment_sorting(combined_analysis_finals):
 
         a = open("data_analysis/"+current_sub+"_negatives.json", "w")
         json.dump(negative, a)
-
+        print("Created data_analysis/"+current_sub+"_negatives.json")
         b = open("data_analysis/"+current_sub+"_positives.json", "w")
         json.dump(positive, b)
-
+        print("Created data_analysis/"+current_sub+"_positives.json")
         c = open("data_analysis/"+current_sub+"_neutrals.json", "w")
         json.dump(neutral, c)
+        print("Created data_analysis/"+current_sub+"_neutrals.json")
 
-    
-if __name__ == '__main__':
+def main():
     files = ["COMBINED_analysis/changemyview_analysis.json", "COMBINED_analysis/Conservative_analysis.json", "COMBINED_analysis/conspiracy_analysis.json", "COMBINED_analysis/democrats_analysis.json",
              "COMBINED_analysis/PoliticalDiscussion_analysis.json", "COMBINED_analysis/politics_analysis.json", "COMBINED_analysis/TrueReddit_analysis.json"]
+    print("Creating sentiment sorting!")
     sentiment_sorting(files)
+    print("############################################################")
+    
+if __name__ == '__main__':
+    main()

@@ -108,7 +108,54 @@ def commentScrapeBySubreddit(subreddit_comment_id_file_array, headers):
         
 ######################################################################
 
+def rawScrape(headers):
+##########################################################################################
+# Author: Ashley
+    # To run this program, uncomment the chunk of code using 'Ctrl/Cmd + /'
+    # These lines scrape the top 100 most controversial posts from each subreddit into a json file
+    f = open("scrape.json", "w")
+    json.dump(requests.get("https://oauth.reddit.com/r/conspiracy/controversial", headers=headers,
+    params={'limit': '100'}).json(), f)
+    f.close()
 
+    f = open("scrape1.json", "w")
+    json.dump(requests.get("https://oauth.reddit.com/r/politics/controversial", headers=headers,
+    params={'limit': '100'}).json(), f)
+    f.close()
+
+    f = open("scrape2.json", "w")
+    json.dump(requests.get("https://oauth.reddit.com/r/TrueReddit/controversial", headers=headers,
+    params={'limit': '100'}).json(), f)
+    f.close()
+
+    f = open("scrape3.json", "w")
+    json.dump(requests.get("https://oauth.reddit.com/r/PoliticalDiscussion/controversial", headers=headers,
+    params={'limit': '100'}).json(), f)
+    f.close()
+
+    f = open("scrape4.json", "w")
+    json.dump(requests.get("https://oauth.reddit.com/r/changemyview/controversial", headers=headers,
+    params={'limit': '100'}).json(), f)
+    f.close()
+
+    f = open("scrape5.json", "w")
+    json.dump(requests.get("https://oauth.reddit.com/r/Conservative/controversial", headers=headers,
+    params={'limit': '100'}).json(), f)
+    f.close()
+
+    f = open("scrape6.json", "w")
+    json.dump(requests.get("https://oauth.reddit.com/r/democrats/controversial", headers=headers,
+    params={'limit': '100'}).json(), f)
+    f.close()
+
+    #iterate over comment_id.txt file and look collect comment information into commentScrape.json
+    r = open("comment_ids.txt", "r")
+    w = open("commentScrape.json", "w")
+    comments = r.readlines()
+    for comment in comments:
+        json.dump(requests.get("https://oauth.reddit.com/r/" + comment.strip(), headers=headers, params={'limit': '5'}).json(), w)
+    r.close()
+    w.close()
 
 def dataCollection():
 ############################## --- API ACCESS --- ##############################
@@ -131,59 +178,13 @@ def dataCollection():
 
     # test to make sure the token is taken, should print with exit code 0
     # print(requests.get("https://oauth.reddit.com/api/v1/me", headers=headers).json())
-
-##########################################################################################
-# Author: Ashley
-    # To run this program, uncomment the chunk of code using 'Ctrl/Cmd + /'
-    # These lines scrape the top 100 most controversial posts from each subreddit into a json file
-    # f = open("scrape.json", "w")
-    # json.dump(requests.get("https://oauth.reddit.com/r/conspiracy/controversial", headers=headers,
-    # params={'limit': '100'}).json(), f)
-    # f.close()
-
-    # f = open("scrape1.json", "w")
-    # json.dump(requests.get("https://oauth.reddit.com/r/politics/controversial", headers=headers,
-    # params={'limit': '100'}).json(), f)
-    # f.close()
-
-    # f = open("scrape2.json", "w")
-    # json.dump(requests.get("https://oauth.reddit.com/r/TrueReddit/controversial", headers=headers,
-    # params={'limit': '100'}).json(), f)
-    # f.close()
-
-    # f = open("scrape3.json", "w")
-    # json.dump(requests.get("https://oauth.reddit.com/r/PoliticalDiscussion/controversial", headers=headers,
-    # params={'limit': '100'}).json(), f)
-    # f.close()
-
-    # f = open("scrape4.json", "w")
-    # json.dump(requests.get("https://oauth.reddit.com/r/changemyview/controversial", headers=headers,
-    # params={'limit': '100'}).json(), f)
-    # f.close()
-
-    # f = open("scrape5.json", "w")
-    # json.dump(requests.get("https://oauth.reddit.com/r/Conservative/controversial", headers=headers,
-    # params={'limit': '100'}).json(), f)
-    # f.close()
-
-    # f = open("scrape6.json", "w")
-    # json.dump(requests.get("https://oauth.reddit.com/r/democrats/controversial", headers=headers,
-    # params={'limit': '100'}).json(), f)
-    # f.close()
-
-    # #iterate over comment_id.txt file and look collect comment information into commentScrape.json
-    # r = open("comment_ids.txt", "r")
-    # w = open("commentScrape.json", "w")
-    # comments = r.readlines()
-    # for comment in comments:
-    #     json.dump(requests.get("https://oauth.reddit.com/r/" + comment.strip(), headers=headers, params={'limit': '5'}).json(), w)
-    # r.close()
-    # w.close()
     print("############################################################")
     print("Welcome to our project!!")
     print("REDDIT NLP - Investigating Echo Chambers!")
     print("############################################################")
     print("Commencing Data Collection....")
+    # print("Collecting raw data from Reddit API using API keys defined in .env file")
+    # rawScrape(headers)
     files_to_scrape = ["scrape.json", "scrape1.json", "scrape2.json", "scrape3.json", "scrape4.json", "scrape5.json", "scrape6.json"]
     print("Getting comment Ids from general scrape file:")
     getCommentIDs(files_to_scrape)
@@ -200,8 +201,17 @@ def dataCollection():
     
 
 import sentiment_analysis
-
+import postPartitioning
+import global_averageSentiment
+import combined_SAKA
+import charts
 if __name__ == '__main__':
-    # dataCollection()
-    # sentiment_analysis.main()
+    dataCollection()
+    sentiment_analysis.main()
+    combined_SAKA.main()
+    postPartitioning.main()
+    global_averageSentiment.main()
+    charts.main()
+    
+    
     

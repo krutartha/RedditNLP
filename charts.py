@@ -12,7 +12,6 @@ def makeWordClouds(file_array):
         os.mkdir('word_clouds')
     for file in file_array:
         sub_name = file.split("/")[1].split(".")[0][:-9].lower()
-        print(sub_name)
         r = open(file, "r")
         json_file = json.load(r)
 
@@ -49,6 +48,7 @@ def makeWordClouds(file_array):
         plt.tight_layout(pad = 0)
 
         plt.savefig('word_clouds/'+sub_name+".png", dpi=300)
+        print("Created word_clouds/"+sub_name+".png")
 
 def makePieChart(file_array):
     if(not os.path.exists('pie_charts')):
@@ -80,9 +80,17 @@ def makePieChart(file_array):
         plt.pie(y, labels=labels, colors=colors, autopct="%.2f%%")
         plt.legend(title="r/"+sub_name)
         plt.savefig('pie_charts/'+sub_name+".png", dpi=300)
-        
-if __name__ == '__main__':
+        print("Created pie_charts/"+sub_name+".png")
+
+def main():
     combined_files = ["COMBINED_analysis/changemyview_analysis.json", "COMBINED_analysis/Conservative_analysis.json", "COMBINED_analysis/conspiracy_analysis.json", "COMBINED_analysis/democrats_analysis.json", "COMBINED_analysis/PoliticalDiscussion_analysis.json",  "COMBINED_analysis/politics_analysis.json", "COMBINED_analysis/TrueReddit_analysis.json"]
     comment_files = ["sentiment_analyses/changemyview_analysis.json", "sentiment_analyses/Conservative_analysis.json", "sentiment_analyses/conspiracy_analysis.json", "sentiment_analyses/democrats_analysis.json", "sentiment_analyses/PoliticalDiscussion_analysis.json", "sentiment_analyses/politics_analysis.json", "sentiment_analyses/TrueReddit_analysis.json"]
-    # makeWordClouds(combined_files)
+    print("Creating word clouds...")
+    makeWordClouds(combined_files)
+    print("############################################################")
+    print("Creating pie charts...")
     makePieChart(comment_files)
+    print("############################################################")        
+    
+if __name__ == '__main__':
+    main()

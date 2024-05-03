@@ -37,9 +37,8 @@ def getAverageStructure():
                 dataDict[compound_value].append(comm_sent_val)
             else:
                 dataDict[compound_value] = [comm_sent_val]
-        
-        x = file.split("\\")
-        filename_data_dict[x[1]] = dataDict
+        x = file.split("/")
+        filename_data_dict[x[-1].split(".")[0]] = dataDict
 
     return filename_data_dict
 
@@ -56,8 +55,8 @@ def getPostKeywordStructure():
     for file in files:
         r = open(file, "r")
         posts = json.load(r)
-        x = file.split("\\")
-        current_file = x[1]
+        x = file.split("/")
+        current_file = x[-1].split(".")[0]
         postKW_dict = {}
 
         w = open("subreddit_post_keywords/"+current_file+"_post_keywords.json", "w")
@@ -93,6 +92,7 @@ def getPostKeywordStructure():
                             postKW_dict[key] = value
                 
         json.dump(postKW_dict, w)
+        print("Created subreddit_post_keywords/"+current_file+"_post_keywords.json")
 
 def getCommentKeywordStructure():
     os_string = (os.getcwd() + "\data_analysis")
@@ -101,14 +101,14 @@ def getCommentKeywordStructure():
     dirpath = new_string
     files = [os.path.join(dirpath, file) for file in os.listdir(dirpath) if os.path.isfile(os.path.join(dirpath, file))]   
 
-    if(not os.path.exists('subreddit_keywords')):
+    if(not os.path.exists('subreddit_comment_keywords')):
             os.mkdir('subreddit_comment_keywords')
     
     for file in files:
         r = open(file, "r")
         posts = json.load(r)
-        x = file.split("\\")
-        current_file = x[1]
+        x = file.split("/")
+        current_file = x[-1].split(".")[0]
         commentKW_Dict = {}
     
         w = open("subreddit_comment_keywords/"+current_file+"_comment_keywords.json", "w")
@@ -133,6 +133,7 @@ def getCommentKeywordStructure():
                 
         # filename_kw_dict[file[50:]] = dataDict
         json.dump(commentKW_Dict, w)
+        print("Created subreddit_comment_keywords/"+current_file+"_comment_keywords.json")
 
 def computeAverages(allDataDict):
     with open("Averages.txt", "w") as output_file:
@@ -155,6 +156,7 @@ def computeAverages(allDataDict):
             output_file.write("Post Average: " + str(post_average) + "\n\n")
             output_file.write("Comment Average: " + str(commentAverage) + "\n\n")
             output_file.write("\n")
+    print("Creted Averages.txt!")
 
 def printTop20PostKW():
     os_string = (os.getcwd() + "\subreddit_post_keywords")
@@ -164,8 +166,8 @@ def printTop20PostKW():
     
     with open("Top20PostKW.txt", "w", encoding='utf-8') as output_file:
         for file in files:
-            x = file.split("\\")
-            current_file = x[1]
+            x = file.split("/")
+            current_file = x[-1].split(".")[0]
             output_file.write("------ " + current_file + " Top Post Keywords ----------\n\n")
             r = open(file, "r")
             dict_data = json.load(r)
@@ -185,8 +187,8 @@ def printTop20CommentKW():
     
     with open("Top20CommentKW.txt", "w") as output_file:
         for file in files:
-            x = file.split("\\")
-            current_file = x[1]
+            x = file.split("/")
+            current_file = x[-1].split(".")[0]
             output_file.write("------ " + current_file + " Top Comment Keywords ----------\n\n")
             r = open(file, "r")
             dict_data = json.load(r)
@@ -197,13 +199,19 @@ def printTop20CommentKW():
                 output_file.write("- " + word[0] + " | " + str(word[1]) + "\n")
             output_file.write("\n")
 
-        
-if __name__ == '__main__':
+def main():
+    print("Extacting keywords from comment scrapes!")
     getCommentKeywordStructure()
     printTop20CommentKW()
-    
+    print("############################################################")
+    print("Extacting keywords from POST scrapes!")
     getPostKeywordStructure()
     printTop20PostKW()
-    
+    print("############################################################")
+    print("Computing the averages!")
     x = getAverageStructure()
     computeAverages(x)
+    print("############################################################")
+        
+if __name__ == '__main__':
+    main()    

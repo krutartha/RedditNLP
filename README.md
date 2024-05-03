@@ -1,15 +1,28 @@
 # RedditNLP
 Found at https://github.com/krutartha/RedditNLP
 
-### Setup instructions
+### Setup and Running instructions
 ```
 pip install -r requirements.txt
 python main.py
-python sentiment_analysis.py
-python 
 ```
 
+The main.py files runs the following functions in the given order:
+
+1. Collecting comment IDs from general scrape files
+2. Creating subreddit files for comments based on subreddit
+3. Scrape comment for each subreddit file from the respective subreddit comment ID file
+4. Basic Sentiment Analysis
+5. Create Sentiment Change Over Time graphs
+6. Extract keywords and combining keywords and combining sentiment analysis
+7. Create Histogram for combined Analysis
+8. Sort subreddit data based on sentiment sorting
+9. Extracting keywords from comment scrapes
+
 **Note**: Ensure you have set the necessary variables in your local ***.env*** file!
+**Note**: We have alredy attached the general data scrape files in order to save time and API requests for the tester!
+
+
 
 
 **Note**: main.py may have to be run in batches (by commenting out code) to ensure that the Reddit API requests do not exceed the allowed amount. 
