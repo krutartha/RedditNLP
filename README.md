@@ -1,7 +1,7 @@
 # RedditNLP
 Found at https://github.com/krutartha/RedditNLP
 
-### Setup and Running instructions
+## Setup and Running instructions
 ```
 pip install -r requirements.txt
 python main.py
@@ -18,6 +18,10 @@ The main.py files runs the following functions in the given order:
 7. Create Histogram for combined Analysis
 8. Sort subreddit data based on sentiment sorting
 9. Extracting keywords from comment scrapes
+10. Extacting keywords from POST scrapes
+11. Computing the average sentiment scores
+12. Create Word Clouds
+13. Create Pie Charts
 
 **Note**: Ensure you have set the necessary variables in your local ***.env*** file!
 **Note**: We have alredy attached the general data scrape files in order to save time and API requests for the tester!
