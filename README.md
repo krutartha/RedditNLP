@@ -24,12 +24,12 @@ The main.py files runs the following functions in the given order:
 13. Create Pie Charts
 
 **Note**: Ensure you have set the necessary variables in your local ***.env*** file!
+
+
 **Note**: We have alredy attached the general data scrape files in order to save time and API requests for the tester!
 
 
 
-
-**Note**: main.py may have to be run in batches (by commenting out code) to ensure that the Reddit API requests do not exceed the allowed amount. 
 
 ## Project Idea
 
