@@ -1,5 +1,5 @@
 # RedditNLP
-Found at https://github.com/krutartha/RedditNLP
+Found at https://github.com/krutartha/EchoScope
 
 ## Setup and Running instructions
 ```
